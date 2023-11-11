@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_statistics",
+  "info": {
+    "displayName": "statistics",
+    "icon": "stack",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "viewCount": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "commentCount": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
