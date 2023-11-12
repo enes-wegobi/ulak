@@ -6,4 +6,19 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::category.category');
+module.exports = createCoreRouter('api::category.category',
+{
+    only: ['findOne', 'find'],
+    config: {
+        findOne: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+      find: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    }
+  });
