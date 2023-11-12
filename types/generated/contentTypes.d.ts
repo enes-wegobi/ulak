@@ -381,6 +381,13 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::news.news'
     >;
     image: Attribute.Media & Attribute.Required;
+    viewCount: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMax<{
+        min: '0';
+      }> &
+      Attribute.DefaultTo<'0'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -392,6 +399,42 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGeneralContactFormGeneralContactForm
+  extends Schema.CollectionType {
+  collectionName: 'general_contact_forms';
+  info: {
+    singularName: 'general-contact-form';
+    pluralName: 'general-contact-forms';
+    displayName: 'generalContactForm';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    surname: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+    subject: Attribute.String & Attribute.Required;
+    message: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::general-contact-form.general-contact-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::general-contact-form.general-contact-form',
       'oneToOne',
       'admin::user'
     > &
@@ -417,7 +460,7 @@ export interface ApiNewsNews extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
-    description: Attribute.RichText &
+    content: Attribute.RichText &
       Attribute.Required &
       Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -425,10 +468,16 @@ export interface ApiNewsNews extends Schema.CollectionType {
           preset: 'toolbar';
         }
       >;
-    cover: Attribute.Media;
-    isShownCarousel: Attribute.Boolean &
+    image: Attribute.Media;
+    isHomeFeatured: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    viewCount: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.DefaultTo<'0'>;
+    resource: Attribute.String;
+    isCategoryFeatured: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -765,6 +814,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::category.category': ApiCategoryCategory;
+      'api::general-contact-form.general-contact-form': ApiGeneralContactFormGeneralContactForm;
       'api::news.news': ApiNewsNews;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

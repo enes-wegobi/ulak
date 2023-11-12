@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-11-11T16:20:02.163Z"
+    "x-generation-date": "2023-11-12T00:27:20.814Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -95,7 +95,8 @@
           "data": {
             "required": [
               "name",
-              "image"
+              "image",
+              "viewCount"
             ],
             "type": "object",
             "properties": {
@@ -126,6 +127,11 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "viewCount": {
+                "type": "string",
+                "pattern": "^\\d*$",
+                "example": "123456789"
               }
             }
           }
@@ -181,7 +187,8 @@
         "type": "object",
         "required": [
           "name",
-          "image"
+          "image",
+          "viewCount"
         ],
         "properties": {
           "name": {
@@ -863,6 +870,11 @@
                                           }
                                         }
                                       },
+                                      "viewCount": {
+                                        "type": "string",
+                                        "pattern": "^\\d*$",
+                                        "example": "123456789"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -916,10 +928,10 @@
                             }
                           }
                         },
-                        "description": {
+                        "content": {
                           "type": "string"
                         },
-                        "cover": {
+                        "image": {
                           "type": "object",
                           "properties": {
                             "data": {
@@ -1058,7 +1070,18 @@
                             }
                           }
                         },
-                        "isShownCarousel": {
+                        "isHomeFeatured": {
+                          "type": "boolean"
+                        },
+                        "viewCount": {
+                          "type": "string",
+                          "pattern": "^\\d*$",
+                          "example": "123456789"
+                        },
+                        "resource": {
+                          "type": "string"
+                        },
+                        "isCategoryFeatured": {
                           "type": "boolean"
                         },
                         "createdAt": {
@@ -1253,6 +1276,11 @@
               }
             }
           },
+          "viewCount": {
+            "type": "string",
+            "pattern": "^\\d*$",
+            "example": "123456789"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -1323,6 +1351,390 @@
           }
         }
       },
+      "GeneralContactFormRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "required": [
+              "name",
+              "surname",
+              "email",
+              "subject",
+              "message"
+            ],
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "surname": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "subject": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "GeneralContactForm": {
+        "type": "object",
+        "required": [
+          "name",
+          "surname",
+          "email",
+          "subject",
+          "message"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "firstname": {
+                        "type": "string"
+                      },
+                      "lastname": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email"
+                      },
+                      "resetPasswordToken": {
+                        "type": "string"
+                      },
+                      "registrationToken": {
+                        "type": "string"
+                      },
+                      "isActive": {
+                        "type": "boolean"
+                      },
+                      "roles": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "attributes": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "code": {
+                                      "type": "string"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "users": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "permissions": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "action": {
+                                                    "type": "string"
+                                                  },
+                                                  "actionParameters": {},
+                                                  "subject": {
+                                                    "type": "string"
+                                                  },
+                                                  "properties": {},
+                                                  "conditions": {},
+                                                  "role": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "id": {
+                                                            "type": "number"
+                                                          },
+                                                          "attributes": {
+                                                            "type": "object",
+                                                            "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "createdAt": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                  },
+                                                  "updatedAt": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                  },
+                                                  "createdBy": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "id": {
+                                                            "type": "number"
+                                                          },
+                                                          "attributes": {
+                                                            "type": "object",
+                                                            "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "updatedBy": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "id": {
+                                                            "type": "number"
+                                                          },
+                                                          "attributes": {
+                                                            "type": "object",
+                                                            "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "blocked": {
+                        "type": "boolean"
+                      },
+                      "preferedLanguage": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "createdBy": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "updatedBy": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "updatedBy": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "GeneralContactFormResponseDataObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/GeneralContactForm"
+          }
+        }
+      },
+      "GeneralContactFormResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GeneralContactFormResponseDataObject"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
       "NewsRequest": {
         "type": "object",
         "required": [
@@ -1331,8 +1743,9 @@
         "properties": {
           "data": {
             "required": [
-              "description",
-              "isShownCarousel"
+              "content",
+              "isHomeFeatured",
+              "viewCount"
             ],
             "type": "object",
             "properties": {
@@ -1353,10 +1766,10 @@
                   "example": "string or id"
                 }
               },
-              "description": {
+              "content": {
                 "type": "string"
               },
-              "cover": {
+              "image": {
                 "oneOf": [
                   {
                     "type": "integer"
@@ -1367,7 +1780,18 @@
                 ],
                 "example": "string or id"
               },
-              "isShownCarousel": {
+              "isHomeFeatured": {
+                "type": "boolean"
+              },
+              "viewCount": {
+                "type": "string",
+                "pattern": "^\\d*$",
+                "example": "123456789"
+              },
+              "resource": {
+                "type": "string"
+              },
+              "isCategoryFeatured": {
                 "type": "boolean"
               }
             }
@@ -1423,8 +1847,9 @@
       "News": {
         "type": "object",
         "required": [
-          "description",
-          "isShownCarousel"
+          "content",
+          "isHomeFeatured",
+          "viewCount"
         ],
         "properties": {
           "title": {
@@ -1484,10 +1909,10 @@
                                           }
                                         }
                                       },
-                                      "description": {
+                                      "content": {
                                         "type": "string"
                                       },
-                                      "cover": {
+                                      "image": {
                                         "type": "object",
                                         "properties": {
                                           "data": {
@@ -2109,7 +2534,18 @@
                                           }
                                         }
                                       },
-                                      "isShownCarousel": {
+                                      "isHomeFeatured": {
+                                        "type": "boolean"
+                                      },
+                                      "viewCount": {
+                                        "type": "string",
+                                        "pattern": "^\\d*$",
+                                        "example": "123456789"
+                                      },
+                                      "resource": {
+                                        "type": "string"
+                                      },
+                                      "isCategoryFeatured": {
                                         "type": "boolean"
                                       },
                                       "createdAt": {
@@ -2304,6 +2740,11 @@
                             }
                           }
                         },
+                        "viewCount": {
+                          "type": "string",
+                          "pattern": "^\\d*$",
+                          "example": "123456789"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -2357,10 +2798,10 @@
               }
             }
           },
-          "description": {
+          "content": {
             "type": "string"
           },
-          "cover": {
+          "image": {
             "type": "object",
             "properties": {
               "data": {
@@ -2499,7 +2940,18 @@
               }
             }
           },
-          "isShownCarousel": {
+          "isHomeFeatured": {
+            "type": "boolean"
+          },
+          "viewCount": {
+            "type": "string",
+            "pattern": "^\\d*$",
+            "example": "123456789"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "isCategoryFeatured": {
             "type": "boolean"
           },
           "createdAt": {
@@ -3283,6 +3735,87 @@
           }
         ],
         "operationId": "delete/categories/{id}"
+      }
+    },
+    "/general-contact-forms": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralContactFormResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "General-contact-form"
+        ],
+        "parameters": [],
+        "operationId": "post/general-contact-forms",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GeneralContactFormRequest"
+              }
+            }
+          }
+        }
       }
     },
     "/newses": {

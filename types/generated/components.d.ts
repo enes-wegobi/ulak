@@ -51,25 +51,11 @@ export interface SharedSeo extends Schema.Component {
   };
 }
 
-export interface SharedStatistic extends Schema.Component {
-  collectionName: 'components_shared_statistics';
-  info: {
-    displayName: 'statistics';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    viewCount: Attribute.BigInteger & Attribute.DefaultTo<'0'>;
-    commentCount: Attribute.Integer & Attribute.DefaultTo<0>;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
-      'shared.statistic': SharedStatistic;
     }
   }
 }

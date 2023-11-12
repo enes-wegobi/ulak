@@ -21,7 +21,7 @@
       "target": "api::category.category",
       "mappedBy": "news"
     },
-    "description": {
+    "content": {
       "type": "customField",
       "options": {
         "preset": "toolbar"
@@ -29,7 +29,7 @@
       "customField": "plugin::ckeditor5.CKEditor",
       "required": true
     },
-    "cover": {
+    "image": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -37,10 +37,22 @@
         "images"
       ]
     },
-    "isShownCarousel": {
+    "isHomeFeatured": {
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "viewCount": {
+      "type": "biginteger",
+      "required": true,
+      "default": "0",
+      "private": true
+    },
+    "resource": {
+      "type": "string"
+    },
+    "isCategoryFeatured": {
+      "type": "boolean"
     }
   }
 }

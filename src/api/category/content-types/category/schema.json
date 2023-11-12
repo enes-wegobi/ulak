@@ -30,6 +30,13 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "viewCount": {
+      "type": "biginteger",
+      "required": true,
+      "default": "0",
+      "min": "0",
+      "private": true
     }
   }
 }
